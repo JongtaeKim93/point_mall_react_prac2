@@ -1,25 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
+
+import Home from './point_mall/Home';
+import Header from './point_mall/Header';
+import Footer from './point_mall/Footer';
+import ItemDetail from './point_mall/ItemDetail'
+import CategoryItems from './point_mall/CategoryItems';
+import Login from './point_mall/Login';
+import CartItems from './point_mall/CartItems';
+import Register from './point_mall/Register';
+import MyItems from './point_mall/MyItems';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <Header />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/items/:itemId" component={ItemDetail} />
+          <Route exact path="/categories/:categoryId" component={CategoryItems} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/cart/items" component={CartItems} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/me/items" component={MyItems} />
+        </Switch>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
